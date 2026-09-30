@@ -352,4 +352,4 @@ This is why Fail2Ban is one layer in a defence-in-depth approach, not a complete
 
 ---
 
-*Author: Emmy · MSc Cloud and Network Security, University of Greater Manchester*
+*Author: Emmanuel Aliu · MSc Cloud and Network Security, University of Greater Manchester*
