@@ -1,1 +1,36 @@
+# /etc/fail2ban/jail.local
+#
+# Local overrides for Fail2Ban. Anything set here wins over jail.conf,
+# and this file is never touched by package upgrades.
+#
+# In the lab I copied the whole of jail.conf to jail.local and edited it.
+# This file keeps only the lines I actually changed, which is the cleaner
+# way to do it: it is short, easy to review, and makes the policy obvious.
+
+[DEFAULT]
+# How long an offending IP stays banned
+bantime  = 1h
+
+# The window in which failures are counted
+findtime = 10m
+
+# Failures allowed inside findtime before a ban (default for all jails)
+maxretry = 5
+
+
+[sshd]
+# Protect SSH. On Debian 13 this jail reads the systemd journal
+# (_SYSTEMD_UNIT=ssh.service) rather than a log file.
+enabled  = true
+# Stricter than the global default: 3 failures, not 5
+maxretry = 3
+
+
+[vsftpd]
+# Protect the vsftpd FTP server on port 21
+enabled  = true
+port     = ftp,ftp-data,ftps,ftps-data
+logpath  = /var/log/vsftpd.log
+maxretry = 3
+bantime  = 1h
 
